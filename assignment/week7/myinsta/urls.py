@@ -17,9 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from posts.views import lotto
+from posts.views import lotto_index, lotto_result
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('lotto/', lotto, name='lotto'),
+    path('lotto/', lotto_index, name='lotto_index'),
+    path('lotto/result', lotto_result, name='lotto_result'),
 ]
