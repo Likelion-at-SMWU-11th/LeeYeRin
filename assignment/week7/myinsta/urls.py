@@ -15,12 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-from posts.views import lotto_index, lotto_result
+#from posts.views import lotto_index, lotto_result
+from posts.views import url_view, url_parameter_view, function_view, index
+from posts.views import class_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('lotto/', lotto_index, name='lotto_index'),
-    path('lotto/result', lotto_result, name='lotto_result'),
+    path('url/', url_view),
+    path('url/<str:username>/', url_parameter_view),
+    path('fbv/', function_view),
+    path('cbv/', class_view.as_view()),
+    #path('lotto/', lotto_index, name='lotto_index'),
+    #path('lotto/result', lotto_result, name='lotto_result'),
+    
+    path('', index, name='index'),
+    path('posts/', include('posts.urls', namespace='posts')),
 ]
